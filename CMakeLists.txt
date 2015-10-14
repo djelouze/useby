@@ -7,5 +7,6 @@ set( UB_DEADLINE "0000-00-00" CACHE STRING "Day after which the authorization fa
 configure_file(usebyConfig.h.in usebyConfig.h)
 
 add_library( useby SHARED useby.cxx )
+install( TARGETS useby DESTINATION bin)
 
 
