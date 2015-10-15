@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 project(useby)
 
-#set( UB_AUTHENTIFICATION_KEY "0" CACHE STRING "key return to caller") 
 set( UB_DEADLINE "0000-00-00" CACHE STRING "Day after which the authorization fails. in ISO-8601 format")
 set( UB_KEY_GENERATOR "UB_KEY_GENERATOR-NOTFOUND" CACHE FILEPATH "Path to executable that outputs a key")
 set( UB_KEY_GENERATOR_PATH "UB_KEY_GENERATOR_PATH-NOTFOUND" CACHE PATH "Path to executable that outputs a key")
@@ -24,4 +23,7 @@ include_directories(${CMAKE_BINARY_DIR})
 add_library( useby SHARED useby.cxx )
 install( TARGETS useby DESTINATION bin)
 
-
+ADD_CUSTOM_COMMAND(TARGET useby 
+	PRE_BUILD
+	COMMAND ${CMAKE_COMMAND} ARGS -E touch ${CMAKE_CURRENT_LIST_FILE}
+	) 
